@@ -14,10 +14,17 @@ namespace Practical_14.Controllers
     {
         
         private EmployeeDBContext context = new EmployeeDBContext();
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View();
+            
+            return View(context.Employees.ToList().ToPagedList(page ?? 1,10));
         }
+
+        public ActionResult GetEmployeeByName(string searchValue, int? page)
+        {
+            return PartialView("_GetUserData",context.Employees.Where(e => e.Name.Contains(searchValue)).OrderBy(e => e.Name).ToPagedList(page ?? 1, 10));
+        }
+
 
         public ActionResult GetEmployee()
         {
@@ -65,7 +72,7 @@ namespace Practical_14.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             Employee employee = context.Employees.SingleOrDefault(e => e.Id == id);
