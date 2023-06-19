@@ -1,0 +1,2 @@
+﻿Hello from text file
+This is the content of Text.txt file
