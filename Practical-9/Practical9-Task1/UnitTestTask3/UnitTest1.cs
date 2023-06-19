@@ -10,7 +10,7 @@ namespace UnitTestTask3
         [TestMethod]
         public void TestHelloMessage()
         {
-            Task3Controller controller = new Task3Controller();
+            UnitTestController controller = new UnitTestController();
             var result = controller.Index();
             Assert.AreEqual(result, "Hello World");
         }

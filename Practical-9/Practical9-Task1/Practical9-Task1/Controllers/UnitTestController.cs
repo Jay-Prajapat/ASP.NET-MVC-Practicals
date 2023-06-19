@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Practical9_Task1.Controllers
 {
-    public class Task3Controller : Controller
+    public class UnitTestController : Controller
     {
         // GET: Task3
         public string Index()
