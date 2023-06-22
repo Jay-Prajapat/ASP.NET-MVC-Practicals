@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    @Html.TextBox("search",null, new {placeholder ="Serch By Name"})
+</div>
+
+<div id="content">
+    @Html.Partial("_GetUserData")
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#search").keyup(function () {
+            var searchValue = $("#search").val();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetEmployeeByName")',
+                data: { searchValue },
+                dataType:'html',
+                success: function (result) {
+                    $("#content").html(result);
+                },
+                error: function (err) {
+                    $("#content").html(err);
+                }
+            })
+        })
+    })
+</script>
